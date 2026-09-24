@@ -1,0 +1,375 @@
+<title>VIA BASILICATA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#F6F6F1; --surface:#FFFFFF; --ink:#151B15; --muted:#5D6A5C;
+    --line:#DDDDD2; --olive:#4C6118; --olive-soft:#EDF0E2; --stone:#8A8A7C;
+    --display:"Fraunces","IBM Plex Sans",Georgia,serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      color-scheme:dark;
+      --bg:#10130E; --surface:#171B14; --ink:#EDEFE6; --muted:#A3AC9C;
+      --line:#2A2F25; --olive:#A6C267; --olive-soft:#1C2317; --stone:#7E8677;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --bg:#10130E; --surface:#171B14; --ink:#EDEFE6; --muted:#A3AC9C;
+    --line:#2A2F25; --olive:#A6C267; --olive-soft:#1C2317; --stone:#7E8677;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding-inline:20px}
+  a{color:inherit}
+  h1,h2,h3{text-wrap:balance;margin:0}
+
+  header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topin{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-block:12px}
+  .brand{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;white-space:nowrap}
+  .brand span{color:var(--olive)}
+  .langs{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+  .langs button{font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:6px 9px;border:1px solid transparent;background:none;color:var(--muted);cursor:pointer;border-radius:2px}
+  .langs button:hover{color:var(--ink)}
+  .langs button[aria-pressed="true"]{color:var(--olive);border-color:var(--line);background:var(--olive-soft)}
+  .langs button:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--olive);outline-offset:2px}
+
+  section{border-bottom:1px solid var(--line)}
+  .pad{padding-block:64px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);display:flex;align-items:center;gap:10px;margin-bottom:22px}
+  .eyebrow::after{content:"";height:1px;background:var(--line);flex:1}
+
+  .hero{padding-block:76px 64px}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);margin-bottom:20px}
+  .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,6vw,60px);line-height:1.05;letter-spacing:-.01em;max-width:18ch}
+  .hero p.lead{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:62ch;margin-top:22px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:2px;font-size:14px;font-weight:500;text-decoration:none;border:1px solid var(--olive)}
+  .btn.solid{background:var(--olive);color:var(--bg)}
+  .btn.ghost{color:var(--ink);border-color:var(--line)}
+  .btn:hover{opacity:.88}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .dir{background:var(--surface);border:1px solid var(--line);padding:26px}
+  .dir h3{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--olive);margin-bottom:14px}
+  .dir ul{margin:0;padding-left:18px;color:var(--muted);font-size:15px}
+  .dir li{margin-bottom:7px}
+
+  .svc{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .svc div{background:var(--bg);padding:20px}
+  .svc h4{margin:0 0 6px;font-size:15px;font-weight:600}
+  .svc p{margin:0;font-size:14px;color:var(--muted);line-height:1.5}
+
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:26px 40px}
+  .fact{display:flex;gap:14px;align-items:flex-start}
+  .fact .n{font-family:var(--mono);font-size:12px;color:var(--olive);padding-top:4px;min-width:26px}
+  .fact p{margin:0;font-size:15px;color:var(--muted)}
+  .fact strong{color:var(--ink);font-weight:600}
+
+  .team{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .person{background:var(--surface);border:1px solid var(--line);padding:26px}
+  .person h3{font-family:var(--display);font-weight:600;font-size:21px;margin-bottom:4px}
+  .person .role{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--olive);margin-bottom:12px}
+  .person p{margin:0 0 12px;font-size:15px;color:var(--muted)}
+  .person a{font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--olive);padding-bottom:1px}
+  .person .meta{font-family:var(--mono);font-size:12px;color:var(--stone);margin-top:10px}
+
+  .net{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .net span{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line);padding:5px 10px;border-radius:2px}
+
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .cbox{background:var(--olive-soft);border:1px solid var(--line);padding:24px}
+  .cbox .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:8px}
+  .cbox .val{font-size:16px;font-weight:500;word-break:break-all}
+  .cbox button.copy{margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--muted);padding:6px 10px;cursor:pointer;border-radius:2px}
+  .cbox button.copy:hover{color:var(--ink)}
+
+  footer{padding-block:28px 40px;font-size:13px;color:var(--stone);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  footer .mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em}
+
+  @media (max-width:760px){
+    .two,.team,.contact,.facts{grid-template-columns:1fr}
+    .svc{grid-template-columns:1fr}
+    .pad{padding-block:48px}
+    .hero{padding-block:52px 44px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap topin">
+    <div class="brand">VIA <span>BASILICATA</span></div>
+    <nav class="langs" id="langs" aria-label="Language">
+      <button data-lang="cs" aria-pressed="true">CS</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
+      <button data-lang="it" aria-pressed="false">IT</button>
+      <button data-lang="uk" aria-pressed="false">UK</button>
+      <button data-lang="ru" aria-pressed="false">RU</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker" data-t="tagline"></div>
+    <h1 data-t="h1"></h1>
+    <p class="lead" data-t="lead"></p>
+    <div class="cta">
+      <a class="btn solid" href="https://apuliaoliveoil.cz/" target="_blank" rel="noopener" data-t="cta1"></a>
+      <a class="btn ghost" href="https://tetianakotolup.com/" target="_blank" rel="noopener" data-t="cta2"></a>
+    </div>
+  </div>
+</section>
+
+<section class="pad">
+  <div class="wrap">
+    <div class="eyebrow"><span>01</span><span data-t="s1"></span></div>
+    <div class="two">
+      <div class="dir">
+        <h3 data-t="d1t"></h3>
+        <ul><li data-t="d1a"></li><li data-t="d1b"></li><li data-t="d1c"></li></ul>
+      </div>
+      <div class="dir">
+        <h3 data-t="d2t"></h3>
+        <ul><li data-t="d2a"></li><li data-t="d2b"></li><li data-t="d2c"></li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad">
+  <div class="wrap">
+    <div class="eyebrow"><span>02</span><span data-t="s2"></span></div>
+    <div class="svc">
+      <div><h4 data-t="v1t"></h4><p data-t="v1d"></p></div>
+      <div><h4 data-t="v2t"></h4><p data-t="v2d"></p></div>
+      <div><h4 data-t="v3t"></h4><p data-t="v3d"></p></div>
+      <div><h4 data-t="v4t"></h4><p data-t="v4d"></p></div>
+      <div><h4 data-t="v5t"></h4><p data-t="v5d"></p></div>
+      <div><h4 data-t="v6t"></h4><p data-t="v6d"></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad">
+  <div class="wrap">
+    <div class="eyebrow"><span>03</span><span data-t="s3"></span></div>
+    <div class="facts">
+      <div class="fact"><div class="n">01</div><p data-t="f1"></p></div>
+      <div class="fact"><div class="n">02</div><p data-t="f2"></p></div>
+      <div class="fact"><div class="n">03</div><p data-t="f3"></p></div>
+      <div class="fact"><div class="n">04</div><p data-t="f4"></p></div>
+    </div>
+    <div class="net" aria-label="network">
+      <span>CAMIC</span><span>Velvyslanectví ČR — Roma</span><span>Camera di Commercio della Basilicata</span>
+      <span>ASSET Basilicata</span><span>Camera Brindisi–Taranto</span><span>Camera di Lecce</span><span>Puglia Sviluppo</span>
+    </div>
+  </div>
+</section>
+
+<section class="pad">
+  <div class="wrap">
+    <div class="eyebrow"><span>04</span><span data-t="s4"></span></div>
+    <div class="team">
+      <div class="person">
+        <h3>Eduard Korolov</h3>
+        <div class="role" data-t="p1r"></div>
+        <p data-t="p1d"></p>
+        <div class="meta">OSVČ · IČO 22154396 · Brno</div>
+      </div>
+      <div class="person">
+        <h3>Tetiana Kotolup</h3>
+        <div class="role" data-t="p2r"></div>
+        <p data-t="p2d"></p>
+        <a href="https://tetianakotolup.com/" target="_blank" rel="noopener">tetianakotolup.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad">
+  <div class="wrap">
+    <div class="eyebrow"><span>05</span><span data-t="s5"></span></div>
+    <div class="contact">
+      <div class="cbox">
+        <div class="lbl" data-t="c1l"></div>
+        <div class="val" id="m1">eddigood2020@gmail.com</div>
+        <div class="val" style="font-size:14px;color:var(--muted);margin-top:4px">+420 732 995 210</div>
+        <button class="copy" data-copy="m1" data-t="copy"></button>
+      </div>
+      <div class="cbox">
+        <div class="lbl" data-t="c2l"></div>
+        <div class="val" id="m2">kotolup24@gmail.com</div>
+        <div class="val" style="font-size:14px;color:var(--muted);margin-top:4px">tetianakotolup.com</div>
+        <button class="copy" data-copy="m2" data-t="copy"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="mono">VIA BASILICATA · Brno · Basilicata · Puglia</div>
+  <div class="mono" data-t="foot"></div>
+</footer>
+
+<script>
+const T = {
+cs:{tagline:"Dalla Basilicata al mondo",
+h1:"Obchodní a digitální most mezi Českem a jižní Itálií",
+lead:"Propojujeme italské výrobce s českým trhem a české firmy s Itálií. Obchodní část i digitální přípravu vedeme společně — od průzkumu trhu po e-shop v osmi jazycích.",
+cta1:"Náš projekt: apuliaoliveoil.cz",cta2:"IT portfolio",
+s1:"Dva směry",d1t:"Itálie → Česko",d1a:"vstup italských firem na český trh",d1b:"průzkum trhu, partneři, distributoři, HoReCa",d1c:"první případ: producent olivového oleje z Basilicaty",
+d2t:"Česko → Itálie",d2a:"vstup českých firem na italský trh",d2b:"vyhledání partnerů, B2B jednání, veletrhy",d2c:"digitální příprava: web, e-shop, marketing",
+s2:"Co děláme",
+v1t:"Průzkum trhu",v1d:"Poptávka, konkurence, cenové hladiny a prodejní kanály v cílové zemi.",
+v2t:"Vyhledání partnerů",v2d:"Importéři, distributoři, HoReCa a retail — seznam firem a první oslovení.",
+v3t:"B2B jednání",v3d:"Příprava schůzek, podklady pro jednání a doprovod na veletrhu.",
+v4t:"Vícejazyčný web a e-shop",v4d:"Od struktury a textů po platby, dopravu a právní stránky.",
+v5t:"Digitální marketing",v5d:"Obsah, kampaně, analytika a měření konverzí.",
+v6t:"AI automatizace",v6d:"Automatizace poptávek, objednávek a firemní komunikace.",
+s3:"Co už funguje",
+f1:"<strong>apuliaoliveoil.cz</strong> — e-shop s olivovým olejem z Apulie v 8 jazykových verzích, s platbami a registrací u SZPI.",
+f2:"<strong>Producent z Basilicaty</strong> — přímý kontakt a příprava vstupu na český trh.",
+f3:"<strong>Srpen 2026</strong> — desetidenní pracovní cesta po Apulii a Basilicatě, jednání s obchodní komorou a výrobci.",
+f4:"<strong>Institucionální síť</strong> — komory a agentury na obou stranách, se kterými jsme v kontaktu.",
+s4:"Tým",p1r:"Obchodní rozvoj a market entry",p1d:"Analýza trhů, strategie vstupu, vyhledávání importérů a distributorů, B2B partnerství a obchodní komunikace.",
+p2r:"Digitální část a IT",p2d:"Vícejazyčné weby a e-commerce, digitální marketing, obsah a AI automatizace.",
+s5:"Kontakt",c1l:"Obchod",c2l:"Digitál a IT",copy:"Kopírovat",
+foot:"© 2026 · Eduard Korolov & Tetiana Kotolup"},
+
+en:{tagline:"Dalla Basilicata al mondo",
+h1:"A business and digital bridge between Czechia and southern Italy",
+lead:"We connect Italian producers with the Czech market and Czech companies with Italy — commercial groundwork and digital preparation in one team, from market research to an eight-language online shop.",
+cta1:"Our project: apuliaoliveoil.cz",cta2:"IT portfolio",
+s1:"Two directions",d1t:"Italy → Czechia",d1a:"Italian companies entering the Czech market",d1b:"market research, partners, distributors, HoReCa",d1c:"first case: an olive oil producer from Basilicata",
+d2t:"Czechia → Italy",d2a:"Czech companies entering the Italian market",d2b:"partner search, B2B meetings, trade fairs",d2c:"digital preparation: website, e-shop, marketing",
+s2:"What we do",
+v1t:"Market research",v1d:"Demand, competitors, price levels and sales channels in the target country.",
+v2t:"Partner search",v2d:"Importers, distributors, HoReCa and retail — a shortlist and first approach.",
+v3t:"B2B meetings",v3d:"Meeting preparation, negotiation materials and support at trade fairs.",
+v4t:"Multilingual site & e-shop",v4d:"From structure and copy to payments, shipping and legal pages.",
+v5t:"Digital marketing",v5d:"Content, campaigns, analytics and conversion tracking.",
+v6t:"AI automation",v6d:"Automating enquiries, orders and internal communication.",
+s3:"What already works",
+f1:"<strong>apuliaoliveoil.cz</strong> — an Apulian olive oil shop in 8 languages, with payments and Czech food authority registration.",
+f2:"<strong>Producer in Basilicata</strong> — direct contact and preparation for the Czech market.",
+f3:"<strong>August 2026</strong> — a ten-day business trip across Apulia and Basilicata, meetings with the chamber of commerce and producers.",
+f4:"<strong>Institutional network</strong> — chambers and agencies on both sides that we work with.",
+s4:"Team",p1r:"Business development & market entry",p1d:"Market analysis, entry strategy, search for importers and distributors, B2B partnerships and commercial communication.",
+p2r:"Digital & IT",p2d:"Multilingual websites and e-commerce, digital marketing, content and AI automation.",
+s5:"Contact",c1l:"Commercial",c2l:"Digital & IT",copy:"Copy",
+foot:"© 2026 · Eduard Korolov & Tetiana Kotolup"},
+
+it:{tagline:"Dalla Basilicata al mondo",
+h1:"Un ponte commerciale e digitale tra Repubblica Ceca e Sud Italia",
+lead:"Colleghiamo i produttori italiani con il mercato ceco e le imprese ceche con l'Italia: parte commerciale e preparazione digitale in un unico team, dall'analisi di mercato all'e-shop in otto lingue.",
+cta1:"Il nostro progetto: apuliaoliveoil.cz",cta2:"Portfolio IT",
+s1:"Due direzioni",d1t:"Italia → Rep. Ceca",d1a:"ingresso delle imprese italiane sul mercato ceco",d1b:"analisi di mercato, partner, distributori, HoReCa",d1c:"primo caso: produttore di olio della Basilicata",
+d2t:"Rep. Ceca → Italia",d2a:"ingresso delle imprese ceche sul mercato italiano",d2b:"ricerca partner, incontri B2B, fiere",d2c:"preparazione digitale: sito, e-shop, marketing",
+s2:"Che cosa facciamo",
+v1t:"Analisi di mercato",v1d:"Domanda, concorrenza, fasce di prezzo e canali di vendita nel paese target.",
+v2t:"Ricerca partner",v2d:"Importatori, distributori, HoReCa e retail — lista di aziende e primo contatto.",
+v3t:"Incontri B2B",v3d:"Preparazione degli incontri, materiali per la trattativa e accompagnamento in fiera.",
+v4t:"Sito multilingue ed e-shop",v4d:"Dalla struttura ai testi, fino a pagamenti, spedizioni e pagine legali.",
+v5t:"Marketing digitale",v5d:"Contenuti, campagne, analytics e misurazione delle conversioni.",
+v6t:"Automazione con AI",v6d:"Automazione di richieste, ordini e comunicazione aziendale.",
+s3:"Che cosa funziona già",
+f1:"<strong>apuliaoliveoil.cz</strong> — e-shop di olio extravergine pugliese in 8 lingue, con pagamenti e registrazione presso l'autorità ceca SZPI.",
+f2:"<strong>Produttore in Basilicata</strong> — contatto diretto e preparazione dell'ingresso sul mercato ceco.",
+f3:"<strong>Agosto 2026</strong> — dieci giorni di lavoro tra Puglia e Basilicata, incontri con la Camera di Commercio e con i produttori.",
+f4:"<strong>Rete istituzionale</strong> — camere e agenzie di entrambi i paesi con cui siamo in contatto.",
+s4:"Team",p1r:"Sviluppo commerciale e market entry",p1d:"Analisi dei mercati, strategia di ingresso, ricerca di importatori e distributori, partnership B2B e comunicazione commerciale.",
+p2r:"Area digitale e IT",p2d:"Siti multilingue ed e-commerce, marketing digitale, contenuti e automazione con AI.",
+s5:"Contatti",c1l:"Commerciale",c2l:"Digitale e IT",copy:"Copia",
+foot:"© 2026 · Eduard Korolov & Tetiana Kotolup"},
+
+uk:{tagline:"Dalla Basilicata al mondo",
+h1:"Діловий і цифровий міст між Чехією та Південною Італією",
+lead:"Поєднуємо італійських виробників із чеським ринком, а чеські фірми — з Італією. Комерційна частина й цифрова підготовка в одній команді: від дослідження ринку до магазину вісьмома мовами.",
+cta1:"Наш проєкт: apuliaoliveoil.cz",cta2:"IT-портфоліо",
+s1:"Два напрями",d1t:"Італія → Чехія",d1a:"вихід італійських фірм на чеський ринок",d1b:"дослідження ринку, партнери, дистриб'ютори, HoReCa",d1c:"перший випадок: виробник оливкової олії з Базилікати",
+d2t:"Чехія → Італія",d2a:"вихід чеських фірм на італійський ринок",d2b:"пошук партнерів, B2B-зустрічі, виставки",d2c:"цифрова підготовка: сайт, магазин, маркетинг",
+s2:"Що ми робимо",
+v1t:"Дослідження ринку",v1d:"Попит, конкуренти, цінові рівні та канали продажу в цільовій країні.",
+v2t:"Пошук партнерів",v2d:"Імпортери, дистриб'ютори, HoReCa і роздріб — список фірм і перше звернення.",
+v3t:"B2B-зустрічі",v3d:"Підготовка зустрічей, матеріали для переговорів і супровід на виставці.",
+v4t:"Багатомовний сайт і магазин",v4d:"Від структури й текстів до оплат, доставки та юридичних сторінок.",
+v5t:"Цифровий маркетинг",v5d:"Контент, кампанії, аналітика та вимірювання конверсій.",
+v6t:"AI-автоматизація",v6d:"Автоматизація запитів, замовлень і ділової комунікації.",
+s3:"Що вже працює",
+f1:"<strong>apuliaoliveoil.cz</strong> — магазин оливкової олії з Апулії вісьмома мовами, з оплатами та реєстрацією в SZPI.",
+f2:"<strong>Виробник із Базилікати</strong> — прямий контакт і підготовка виходу на чеський ринок.",
+f3:"<strong>Серпень 2026</strong> — десятиденна робоча поїздка Апулією та Базилікатою, перемовини з торговою палатою і виробниками.",
+f4:"<strong>Інституційна мережа</strong> — палати та агенції з обох боків, з якими ми співпрацюємо.",
+s4:"Команда",p1r:"Розвиток бізнесу та вихід на ринки",p1d:"Аналіз ринків, стратегія входу, пошук імпортерів і дистриб'юторів, B2B-партнерства та ділова комунікація.",
+p2r:"Цифрова частина та IT",p2d:"Багатомовні сайти й e-commerce, цифровий маркетинг, контент і AI-автоматизація.",
+s5:"Контакти",c1l:"Комерція",c2l:"Цифра та IT",copy:"Копіювати",
+foot:"© 2026 · Eduard Korolov & Tetiana Kotolup"},
+
+ru:{tagline:"Dalla Basilicata al mondo",
+h1:"Деловой и цифровой мост между Чехией и южной Италией",
+lead:"Связываем итальянских производителей с чешским рынком, а чешские фирмы — с Италией. Коммерческая часть и цифровая подготовка в одной команде: от исследования рынка до магазина на восьми языках.",
+cta1:"Наш проект: apuliaoliveoil.cz",cta2:"IT-портфолио",
+s1:"Два направления",d1t:"Италия → Чехия",d1a:"выход итальянских фирм на чешский рынок",d1b:"исследование рынка, партнёры, дистрибьюторы, HoReCa",d1c:"первый случай: производитель оливкового масла из Базиликаты",
+d2t:"Чехия → Италия",d2a:"выход чешских фирм на итальянский рынок",d2b:"поиск партнёров, B2B-встречи, выставки",d2c:"цифровая подготовка: сайт, магазин, маркетинг",
+s2:"Что мы делаем",
+v1t:"Исследование рынка",v1d:"Спрос, конкуренты, ценовые уровни и каналы продаж в целевой стране.",
+v2t:"Поиск партнёров",v2d:"Импортёры, дистрибьюторы, HoReCa и розница — список фирм и первое обращение.",
+v3t:"B2B-встречи",v3d:"Подготовка встреч, материалы для переговоров и сопровождение на выставке.",
+v4t:"Многоязычный сайт и магазин",v4d:"От структуры и текстов до оплат, доставки и юридических страниц.",
+v5t:"Цифровой маркетинг",v5d:"Контент, кампании, аналитика и измерение конверсий.",
+v6t:"AI-автоматизация",v6d:"Автоматизация запросов, заказов и деловой коммуникации.",
+s3:"Что уже работает",
+f1:"<strong>apuliaoliveoil.cz</strong> — магазин оливкового масла из Апулии на 8 языках, с оплатами и регистрацией в SZPI.",
+f2:"<strong>Производитель из Базиликаты</strong> — прямой контакт и подготовка выхода на чешский рынок.",
+f3:"<strong>Август 2026</strong> — десятидневная рабочая поездка по Апулии и Базиликате, переговоры с торговой палатой и производителями.",
+f4:"<strong>Институциональная сеть</strong> — палаты и агентства с обеих сторон, с которыми мы работаем.",
+s4:"Команда",p1r:"Развитие бизнеса и выход на рынки",p1d:"Анализ рынков, стратегия входа, поиск импортёров и дистрибьюторов, B2B-партнёрства и деловая коммуникация.",
+p2r:"Цифровая часть и IT",p2d:"Многоязычные сайты и e-commerce, цифровой маркетинг, контент и AI-автоматизация.",
+s5:"Контакты",c1l:"Коммерция",c2l:"Цифра и IT",copy:"Копировать",
+foot:"© 2026 · Eduard Korolov & Tetiana Kotolup"}
+};
+
+function apply(lang){
+  const d = T[lang] || T.cs;
+  document.querySelectorAll("[data-t]").forEach(el=>{
+    const v = d[el.getAttribute("data-t")];
+    if(v!==undefined) el.innerHTML = v;
+  });
+  document.documentElement.lang = lang;
+  document.querySelectorAll("#langs button").forEach(b=>{
+    b.setAttribute("aria-pressed", String(b.dataset.lang===lang));
+  });
+  try{ localStorage.setItem("vb-lang", lang); }catch(e){}
+}
+
+document.getElementById("langs").addEventListener("click", e=>{
+  const b = e.target.closest("button[data-lang]");
+  if(b) apply(b.dataset.lang);
+});
+
+document.querySelectorAll("button.copy").forEach(btn=>{
+  btn.addEventListener("click", async ()=>{
+    const el = document.getElementById(btn.dataset.copy);
+    const txt = el.textContent.trim();
+    const original = btn.textContent;
+    try{
+      await navigator.clipboard.writeText(txt);
+      btn.textContent = "✓";
+    }catch(err){
+      const r = document.createRange(); r.selectNodeContents(el);
+      const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "↑";
+    }
+    setTimeout(()=>{ btn.textContent = original; }, 1600);
+  });
+});
+
+let start = "cs";
+try{ const s = localStorage.getItem("vb-lang"); if(s && T[s]) start = s; }catch(e){}
+apply(start);
+</script>
